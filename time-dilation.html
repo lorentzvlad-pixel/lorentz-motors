@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Dilation - Lorentz Motors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d40000;
+            --primary-dark: #a00000;
+            --secondary: #1a1a1a;
+            --accent: #ff6b00;
+            --text: #ffffff;
+            --text-secondary: #cccccc;
+            --background: #0a0a0a;
+            --card-bg: #151515;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-image {
+    height: 50px; /* Ajustează înălțimea */
+    width: auto; /* Păstrează proporțiile */
+    margin-right: 15px;
+}
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .model-hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background personalizat pentru Time Dilation */
+        .time-hero {
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                url('images/time-dilation.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .model-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .model-hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .model-hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .model-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .spec-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 204, 255, 0.2);
+        }
+
+        .spec-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 204, 255, 0.2);
+        }
+
+        .spec-value {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .tech-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .performance-details {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-item {
+            margin-bottom: 25px;
+        }
+
+        .detail-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: var(--secondary);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 0, 0, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+		<img src="images/lorentz-motors-company.png" alt="Lorentz Motors Company" class="logo-image">
+                <div class="logo-text">Lorentz<span>Motors</span></div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Acasă</a></li>
+                    <li><a href="about.html">Despre Noi</a></li>
+                    <li><a href="quantum-x.html">Quantum X</a></li>
+                    <li><a href="relativity-r.html">Relativity R</a></li>
+                    <li><a href="time-dilation.html">Time Dilation</a></li>
+                    <li><a href="singularity-s.html">Singularity S</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="model-hero time-hero">
+        <div class="container model-hero-content">
+            <h1>Time Dilation</h1>
+            <p>Redefinim percepția timpului și spațiului - Stabilitate absolută la viteze cosmice</p>
+            <a href="#specs" class="btn">Descoperă Stabilitatea</a>
+        </div>
+    </section>
+
+    <section class="container" id="specs">
+        <div class="section-title">
+            <h2>Inginerie Temporală</h2>
+        </div>
+        <div class="model-specs">
+            <div class="spec-card">
+                <div class="spec-value">2.3s</div>
+                <div class="spec-label">0-100 km/h</div>
+                <p>Accelerație controlată perfect</p>
+            </div>
+            <div class="spec-card">
+                <div class="spec-value">410 km/h</div>
+                <div class="spec-label">Viteză maximă</div>
+                <p>Cu stabilitate absolută</p>
+            </div>
+            <div class="spec-card">
+                <div class="spec-value">1750 CP</div>
+                <div class="spec-label">Putere V12</div>
+                <p>Motor atmosferic</p>
+            </div>
+            <div class="spec-card">
+                <div class="spec-value">0.95 g</div>
+                <div class="spec-label">Forță laterală</div>
+                <p>În viraje la 200 km/h</p>
+            </div>
+        </div>
+
+        <div class="performance-details">
+            <h3>Sistemul de Stabilitate Temporală</h3>
+            <div class="detail-item">
+                <h4>Motorul V12 Atmosferic</h4>
+                <p>Motor 6.5L V12 natural aspirat care produce 1750 CP la 9500 rpm. Construit cu tehnologie derivată din F1, cu sistem de admisie acustic optimizat și management avansat al temperaturilor.</p>
+            </div>
+            <div class="detail-item">
+                <h4>Suspensii 4D Active</h4>
+                <p>Sistem de suspensii care anticipează denivelările drumului cu 200 de milisecunde înainte. Utilizează LIDAR și camere pentru a ajusta amortizoarele în timp real.</p>
+            </div>
+            <div class="detail-item">
+                <h4>Controlul Tracțiunii Predictive</h4>
+                <p>AI care analizează stilul de condus, condițiile meteo și starea pneurilor pentru a optimiza tracțiunea. Sistemul poate preveni pierderea aderenței cu până la 500 ms înainte să apară.</p>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <h2>Tehnologii Revolutionare</h2>
+        </div>
+        <div class="tech-features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Stabilitate Temporală</h3>
+                <p>Senzori inerțiali de ultimă generație care mențin stabilitatea mașinii în orice condiții. Compensează automat forțele laterale și longitudinale.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-compress-arrows-alt"></i>
+                </div>
+                <h3>Aerodinamică 4D</h3>
+                <p>Elemente aerodinamice care se transformă dinamic, oferind atât eficiență, cât și downforce extrem. Sistemul active generează până la 1200 kg de downforce.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI Predictive</h3>
+                <p>Inteligență artificială care învață din fiecare kilometru parcurs. Optimizează performanța în funcție de preferințele șoferului și condițiile de drum.</p>
+            </div>
+        </div>
+
+        <div class="performance-details">
+            <h3>Specificații Avansate</h3>
+            <div class="detail-item">
+                <h4>Arhitectură și Materiale</h4>
+                <p>Lungime: 4.680 mm | Lățime: 2.075 mm | Înălțime: 1.130 mm | Ampatament: 2.720 mm | Greutate: 1.620 kg | Structură: Monococ full carbon fiber cu honeycomb</p>
+            </div>
+            <div class="detail-item">
+                <h4>Performanță pe Circuit</h4>
+                <p>Timp Nürburgring Nordschleife: 6:25 | Viteză maximă în viraj: 285 km/h | Frânare de la 100 km/h: 28 metri | Frânare de la 200 km/h: 105 metri</p>
+            </div>
+            <div class="detail-item">
+                <h4>Tehnologii de Conducere</h4>
+                <p>7 moduri de conducere (Urban, Touring, Sport, Race, Track, Drift, Expert) | Sistem de launch control | Control de tracțiune ajustabil pe 10 nivele | Rev matching automat</p>
+            </div>
+        </div>
+
+        <div class="performance-details">
+            <h3>Experiența Time Dilation</h3>
+            <div class="detail-item">
+                <h4>Cabina de Pilotaj</h4>
+                <p>Volan cu display integrat, scaune carbon fiber cu suporturi laterale reglabile, sistem de telemetrie avansat, camere de bord 4K, conectivitate satelitară</p>
+            </div>
+            <div class="detail-item">
+                <h4>Siguranță Avansată</h4>
+                <p>8 airbag-uri, sistem de frânare de urgență autonom, detectare pietoni și cicliști, asistent mentinere banda, monitorizare starea șoferului</p>
+            </div>
+            <div class="detail-item">
+                <h4>Personalizare Extreme</h4>
+                <p>Program de personalizare complet - peste 200 de opțiuni de culori, materiale exclusive, package-uri de performanță, training personalizat pe circuit</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Lorentz Motors Company. Time Dilation - Când fizica devine artă.</p>
+        </div>
+    </footer>
+</body>
+</html>

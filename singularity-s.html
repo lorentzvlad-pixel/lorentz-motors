@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singularity S - Lorentz Motors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d40000;
+            --primary-dark: #a00000;
+            --secondary: #1a1a1a;
+            --accent: #ff6b00;
+            --text: #ffffff;
+            --text-secondary: #cccccc;
+            --background: #0a0a0a;
+            --card-bg: #151515;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-image {
+    height: 50px; /* Ajustează înălțimea */
+    width: auto; /* Păstrează proporțiile */
+    margin-right: 15px;
+}
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .model-hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background personalizat pentru Singularity S */
+        .singularity-hero {
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                url('images/singularity-s.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .model-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .model-hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .model-hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .model-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .spec-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .spec-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
+        }
+
+        .spec-value {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .tech-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .performance-details {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 50px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-item {
+            margin-bottom: 25px;
+        }
+
+        .detail-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .limited-edition {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        footer {
+            background: var(--secondary);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 0, 0, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+		<img src="images/lorentz-motors-company.png" alt="Lorentz Motors Company" class="logo-image">
+                <div class="logo-text">Lorentz<span>Motors</span></div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Acasă</a></li>
+                    <li><a href="about.html">Despre Noi</a></li>
+                    <li><a href="quantum-x.html">Quantum X</a></li>
+                    <li><a href="relativity-r.html">Relativity R</a></li>
+                    <li><a href="time-dilation.html">Time Dilation</a></li>
+                    <li><a href="singularity-s.html">Singularity S</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="model-hero singularity-hero">
+        <div class="container model-hero-content">
+            <h1>Singularity S</h1>
+            <p>Opera de artă inginerescă - Doar pentru cei 25 de norocoși</p>
+            <a href="#specs" class="btn">Află Exclusivitatea</a>
+        </div>
+    </section>
+
+    <div class="limited-edition">
+        <div class="container">
+            <h2><i class="fas fa-crown"></i> EDITION LIMITÉE</h2>
+            <p>Doar 25 de unități vor fi produse. Fiecare mașină este o operă unică, personalizată complet după visurile proprietarului.</p>
+        </div>
+    </div>
+
+    <section class="container" id="specs">
+        <div class="section-title">
+            <h2>Performanță Absolută</h2>
+        </div>
+        <div class="model-specs">
+            <div class="spec-card">
+                <div class="spec-value">1.9s</div>
+                <div class="spec-label">0-100 km/h</div>
+                <p>Al doilea cel mai rapid din lume</p>
+            </div>
+            <div class="spec-card">
+                <div class="spec-value">460 km/h</div>
+                <div class="spec-label">Viteză maximă</div>
+                <p>Record mondial pentru producție limitată</p>
+            </div>
+            <div class="spec-card">
+                <div class="spec-value">2100 CP</div>
+                <div class="spec-label">Putere hibridă</div>
+                <p>Sistem electric + V8 biturbo</p>
+            </div>
+            <div class="spec-card">
+                <div class="spec-value">25 unități</div>
+                <div class="spec-label">Producție totală</div>
+                <p>Exclusivitate absolută</p>
+            </div>
+        </div>
+
+        <div class="performance-details">
+            <h3>Arhitectura Singularity</h3>
+            <div class="detail-item">
+                <h4>Sistemul de Propulsie Dual-Fusion</h4>
+                <p>Combinație între un motor V8 4.5L biturbo care produce 1400 CP și trei motoare electrice sincrone care adaugă 700 CP. Puterea totală de 2100 CP este distribuită prin sistemul de tracțiune integrală vectorială.</p>
+            </div>
+            <div class="detail-item">
+                <h4>Structura Monococ Avansată</h4>
+                <p>Monococ din carbon fiber cu nanotuburi, cel mai rigid chassis produs vreodată pentru un automobil. Rigiditate la torsiune de 75,000 Nm/degree, cu greutate de doar 1450 kg.</p>
+            </div>
+            <div class="detail-item">
+                <h4>Aerodinamica Active 360°</h4>
+                <p>48 de elemente aerodinamice active care se ajustează individual. Sistemul generează până la 2000 kg de downforce și oferă un coeficient de rezistență variabil între 0.18 și 0.40.</p>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <h2>Tehnologii Exclusiviste</h2>
+        </div>
+        <div class="tech-features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <h3>Materiale Din Viitor</h3>
+                <p>Utilizare extensivă de graphene, ceramică avansată, titan aerospațial și compozite cu memorie de formă. Peste 85% din materiale sunt personalizabile.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI Personalizat</h3>
+                <p>Inteligență artificială care se adaptează perfect stilului de condus al proprietarului. Învață preferințe și optimizează performanța în timp real.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-fingerprint"></i>
+                </div>
+                <h3>Securitate Biometrică</h3>
+                <p>Sistem de securitate cu recunoaștere facială, scanare retinală și autentificare vocală. Fiecare mașină este conectată permanent la centrul de operațiuni Lorentz.</p>
+            </div>
+        </div>
+
+        <div class="performance-details">
+            <h3>Programul de Personalizare Absolute</h3>
+            <div class="detail-item">
+                <h4>Design Exterior</h4>
+                <p>Peste 500 de nuanțe de vopsea disponibile, inclusiv culori care se schimbă cu temperatura și unghiul de vedere. Elemente din carbon fiber, titan și ceramică personalizabile.</p>
+            </div>
+            <div class="detail-item">
+                <h4>Interior Luxury</h4>
+                <p>Piele de vițel, Alcantara din fibre de carbon, lemnuri rare, metale prețioase. Fiecare interior este creat manual de meșteri specializați timp de peste 800 de ore.</p>
+            </div>
+            <div class="detail-item">
+                <h4>Performanță Personalizată</h4>
+                <p>Posibilitatea de a alege între diferite setup-uri de suspensii, mapping-uri motor, și caracteristici de conducere. Fiecare client primește training personalizat pe circuit.</p>
+            </div>
+        </div>
+
+        <div class="performance-details">
+            <h3>Experiența Singularity</h3>
+            <div class="detail-item">
+                <h4>Programul de Livrare</h4>
+                <p>Fiecare client este invitat la sediul central Lorentz Motors pentru o experiență de livrare de 3 zile. Include tour al fabricii, training avansat de conducere, și sesiune foto profesională.</p>
+            </div>
+            <div class="detail-item">
+                <h4>Serviciul Concierge</h4>
+                <p>Fiecare proprietar primește un concierge personal dedicat 24/7. Servicii include transport la evenimente, mentenanță acasă, și organizare track days pe circuite exclusive.</p>
+            </div>
+            <div class="detail-item">
+                <h4>Comunitatea Singularity</h4>
+                <p>Acces la evenimente exclusive pentru proprietarii Singularity S, inclusiv zile de circuit private, evenimente de networking, și lansări de produse viitoare Lorentz Motors.</p>
+            </div>
+        </div>
+
+        <div class="performance-details">
+            <h3>Specificații Tehnice Extreme</h3>
+            <div class="detail-item">
+                <h4>Performanță și Eficiență</h4>
+                <p>0-200 km/h: 4.2s | 0-300 km/h: 8.1s | 400m: 8.8s | Viteză maximă în viraj: 295 km/h | Autonomie electrică: 80 km | Consum combinat: 4.2 L/100km</p>
+            </div>
+            <div class="detail-item">
+                <h4>Dimensiuni și Capacități</h4>
+                <p>Lungime: 4.710 mm | Lățime: 2.160 mm | Înălțime: 1.095 mm | Ampatament: 2.770 mm | Portbagaj: 150 L | Greutate: 1.450 kg</p>
+            </div>
+            <div class="detail-item">
+                <h4>Pret și Disponibilitate</h4>
+                <p>Preț de bază: €4.500.000 | Timp de așteptare: 18-24 luni | Garantie: 5 ani fără limită de kilometraj | Asigurare: Program special prin parteneri exclusivi</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Lorentz Motors Company. Singularity S - Pentru cei care nu se mulțumesc cu nimic mai puțin decât perfectul.</p>
+        </div>
+    </footer>
+</body>
+</html>
