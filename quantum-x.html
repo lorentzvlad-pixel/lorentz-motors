@@ -1,254 +1,27 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum X - Lorentz Motors</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #d40000;
-            --primary-dark: #a00000;
-            --secondary: #1a1a1a;
-            --accent: #ff6b00;
-            --text: #ffffff;
-            --text-secondary: #cccccc;
-            --background: #0a0a0a;
-            --card-bg: #151515;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        header {
-            background-color: rgba(10, 10, 10, 0.95);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo-image {
-    height: 50px; /* Ajustează înălțimea */
-    width: auto; /* Păstrează proporțiile */
-    margin-right: 15px;
-}
-
-        .logo-text {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--text);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .logo-text span {
-            color: var(--primary);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .model-hero {
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            padding-top: 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Background cu "imagine" pentru Quantum X */
-        .quantum-hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
-                url('images/quantum-x.jpg');
-    background-size: cover;
-    background-position: center;
-        }
-
-        .model-hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .model-hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-        }
-
-        .model-hero p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: var(--text-secondary);
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        .model-specs {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-
-        .spec-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .spec-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
-        }
-
-        .spec-value {
-            font-size: 2rem;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .tech-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .performance-details {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 15px;
-            margin: 50px 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .detail-item {
-            margin-bottom: 25px;
-        }
-
-        .detail-item h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        footer {
-            background: var(--secondary);
-            padding: 50px 0 20px;
-            text-align: center;
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(212, 0, 0, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 0, 0, 0.5);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
+
 <body>
     <header>
         <div class="container header-container">
             <a href="index.html" class="logo">
-		<img src="images/lorentz-motors-company.png" alt="Lorentz Motors Company" class="logo-image">
+                <img src="images/lorentz-motors-company.png" alt="Lorentz Motors Company" class="logo-image">
                 <div class="logo-text">Lorentz<span>Motors</span></div>
             </a>
+
+            <!-- Butonul pentru mobile -->
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+
             <nav>
                 <ul>
                     <li><a href="index.html">Acasă</a></li>
@@ -301,15 +74,18 @@
             <h3>Detalii Tehnice Avansate</h3>
             <div class="detail-item">
                 <h4>Sistemul de Propulsie Cuantică</h4>
-                <p>Quantum X utilizează patru motoare sincrone cu magneți permanenți, fiecare producând 500 CP. Sistemul oferă control individual asupra fiecărei roți, permitând vectorizarea cuplului în timp real.</p>
+                <p>Quantum X utilizează patru motoare sincrone cu magneți permanenți, fiecare producând 500 CP. Sistemul
+                    oferă control individual asupra fiecărei roți, permitând vectorizarea cuplului în timp real.</p>
             </div>
             <div class="detail-item">
                 <h4>Bateria cu Densitate Extremă</h4>
-                <p>Bateria de 120 kWh utilizează celule de stocare de ultimă generație cu densitate energetică de 350 Wh/kg. Sistemul de răcire lichidă menține temperatura optimă în orice condiții.</p>
+                <p>Bateria de 120 kWh utilizează celule de stocare de ultimă generație cu densitate energetică de 350
+                    Wh/kg. Sistemul de răcire lichidă menține temperatura optimă în orice condiții.</p>
             </div>
             <div class="detail-item">
                 <h4>Aerodinamica Activă</h4>
-                <p>Suprafețele aerodinamice se ajustează dinamic, oferind un coeficient de rezistență de doar 0.21. Sistemul generează până la 800 kg de downforce la viteze maxime.</p>
+                <p>Suprafețele aerodinamice se ajustează dinamic, oferind un coeficient de rezistență de doar 0.21.
+                    Sistemul generează până la 800 kg de downforce la viteze maxime.</p>
             </div>
         </div>
 
@@ -322,21 +98,24 @@
                     <i class="fas fa-atom"></i>
                 </div>
                 <h3>Propulsie Cuantică</h3>
-                <p>Sistem electric cu eficiență energetică de 98%, cel mai avansat din industrie. Transmisia directă elimină pierderile energetice tradiționale.</p>
+                <p>Sistem electric cu eficiență energetică de 98%, cel mai avansat din industrie. Transmisia directă
+                    elimină pierderile energetice tradiționale.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-battery-full"></i>
                 </div>
                 <h3>Baterie Avansată</h3>
-                <p>Tehnologie de baterie cu densitate energetică dublă față de standardul industriei. Încărcare ultra-rapidă de 0-80% în 12 minute.</p>
+                <p>Tehnologie de baterie cu densitate energetică dublă față de standardul industriei. Încărcare
+                    ultra-rapidă de 0-80% în 12 minute.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-microchip"></i>
                 </div>
                 <h3>AI Integration</h3>
-                <p>Sistem de inteligență artificială pentru performanță optimă. Ajustează în timp real setările în funcție de condițiile de drum și stilul de condus.</p>
+                <p>Sistem de inteligență artificială pentru performanță optimă. Ajustează în timp real setările în
+                    funcție de condițiile de drum și stilul de condus.</p>
             </div>
         </div>
 
@@ -344,15 +123,18 @@
             <h3>Specificații Complete</h3>
             <div class="detail-item">
                 <h4>Dimensiuni și Greutate</h4>
-                <p>Lungime: 4.650 mm | Lățime: 2.150 mm | Înălțime: 1.150 mm | Ampatament: 2.800 mm | Greutate: 1.850 kg</p>
+                <p>Lungime: 4.650 mm | Lățime: 2.150 mm | Înălțime: 1.150 mm | Ampatament: 2.800 mm | Greutate: 1.850 kg
+                </p>
             </div>
             <div class="detail-item">
                 <h4>Sistem de Frânare</h4>
-                <p>Frâne carbon-ceramice 420 mm față, 380 mm spate | Sistem regenerativ cu recuperare de până la 350 kW</p>
+                <p>Frâne carbon-ceramice 420 mm față, 380 mm spate | Sistem regenerativ cu recuperare de până la 350 kW
+                </p>
             </div>
             <div class="detail-item">
                 <h4>Interior și Tehnologii</h4>
-                <p>Ecran OLED curbat 18", sistem audio 3D surround, scaune carbon fiber cu masaj, control vocal avansat, conectivitate 5G</p>
+                <p>Ecran OLED curbat 18", sistem audio 3D surround, scaune carbon fiber cu masaj, control vocal avansat,
+                    conectivitate 5G</p>
             </div>
         </div>
     </section>
@@ -363,4 +145,5 @@
         </div>
     </footer>
 </body>
+
 </html>
